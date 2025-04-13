@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # Jenkins CI Server
+  ci-jenkins:
+    image: jenkins/jenkins:lts-jdk11
+    container_name: my-jenkins-server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    networks:
+      - my-ci-network
+
+  # SonarQube Code Analysis
+  code-analyzer:
+    image: sonarqube:lts-community
+    container_name: my-sonarqube
+    restart: unless-stopped
+    depends_on:
+      - sonar-db
+    environment:
+      - SONAR_JDBC_URL=jdbc:postgresql://sonar-db:5432/sonar
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+    ports:
+      - "9000:9000"
+    networks:
+      - my-ci-network
+
+  # PostgreSQL Database for SonarQube
+  sonar-db:
+    image: postgres:13
+    container_name: sonar-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - my-ci-network
+
+  # Nexus Repository Manager
+  artifact-store:
+    image: sonatype/nexus3
+    container_name: my-nexus
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - my-ci-network
+
+  # PgAdmin - PostgreSQL Web GUI
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - my-ci-network
+
+volumes:
+  jenkins-data:
+  sonarqube-data:
+  sonarqube-extensions:
+  postgres-data:
+  nexus-data:
+  pgadmin-data:
+
+networks:
+  my-ci-network:
+    driver: bridge

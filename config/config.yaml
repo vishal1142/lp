@@ -1,0 +1,31 @@
+linkedin:
+  login_url: "https://www.linkedin.com/login"
+  jobs_url: "https://www.linkedin.com/jobs/search/"
+  credentials:
+    username: "vishalmachan031997@gmail.com"
+    password: "DevOps@12"
+  limits:
+    delay_between_actions: 3  # seconds
+    max_jobs: 50
+
+  job_search_parameters:
+    keywords: "Software Engineer"
+    location: "San Francisco Bay Area"
+    experience_level: 3  # 1: Internship, 2: Entry, 3: Associate, 4: Mid-Senior, 5: Director, 6: Executive
+    job_type: "F"        # F: Full-time, P: Part-time, C: Contract, T: Temporary, I: Internship, V: Volunteer
+
+  search_parameters:
+    keywords: "Data Scientist"
+    location: "New York"
+    current_company: "Google"
+    past_company: "Microsoft"
+    school: "Stanford University"
+    industry: "Information Technology & Services"
+    profile_language: "English"
+    open_to_work: true
+
+ocr:
+  enabled: true
+  tesseract_path: "/usr/bin/tesseract"
+  confidence_threshold: 70
+  language: "eng"

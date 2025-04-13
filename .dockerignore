@@ -1,0 +1,30 @@
+# Custom folders to ignore (replace these examples with your actual folders)
+bin/
+temp/
+cache/
+logs/
+data/
+downloads/
+uploads/
+tests/
+test_data/
+exceptions/
+venv/
+configi.ini
+
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+.python-version
+venv/
+.env/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Development files
+.idea/
+.vscode/
+*.swp
+*.sublime-*

@@ -1,0 +1,6 @@
+git
+sonarqube
+pipeline-maven
+docker-plugin
+nexus-artifact-uploader
+blueocean
