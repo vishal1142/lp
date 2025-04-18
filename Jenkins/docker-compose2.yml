@@ -95,6 +95,6 @@ networks:
 # docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=dead"
 # docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=removing"
 # docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=stopped"
-
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=all"
 
 
