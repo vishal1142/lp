@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change this if you want a custom commit message
-DEFAULT_COMMIT_MSG="Auto-commit on $(date '+%Y-%m-%d %H:%M:%S')"
+DEFAULT_COMMIT_MSG="SHELL SCRIPTING Auto-commit on $(date '+%Y-%m-%d %H:%M:%S')"
 
 # Ask for a custom commit message (optional)
 read -p "Enter commit message (or press Enter for default): " COMMIT_MSG
