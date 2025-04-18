@@ -65,3 +65,36 @@ networks:
 #http://localhost:8081/secure/admin/ConfigureUserServer!default.jspa #Jira user management page 
 #http://localhost:8081/secure/admin/ConfigureGroupServer!default.jspa #Jira group management page
 #http://localhost:8081/secure/admin/ConfigureApplication!default.jspa #Jira admin page
+## Create and start all containers in detached mode
+# docker-compose -f docker-compose2.yml up -d
+## Check status of all containers
+# docker-compose -f docker-compose2.yml ps
+# Check the logs of a specific container (e.g., Jira)
+# docker-compose -f docker-compose2.yml logs -f jira
+# Check the logs of a specific container (e.g., PostgreSQL)
+# docker-compose -f docker-compose2.yml logs -f postgres  
+# Check the logs of all containers
+# docker-compose -f docker-compose2.yml logs -f
+# Check the logs of all containers with timestamps
+# docker-compose -f docker-compose2.yml logs -f --timestamps
+# Check the logs of all containers with timestamps and follow mode
+# docker-compose -f docker-compose2.yml logs -f --timestamps --follow 
+# Check the logs of all containers with timestamps and follow mode, and limit to 100 lines
+# docker-compose -f docker-compose2.yml logs -f --timestamps --follow --tail=100
+# Check the logs of all containers with timestamps and follow mode, and limit to 100 lines, and show only errors
+# docker-compose -f docker-compose2.yml logs -f --timestamps --follow --tail=100 --filter "error"
+# Check the logs of all containers with timestamps and follow mode, and limit to 100 lines, and show only warnings
+# docker-compose -f docker-compose2.yml logs -f --timestamps --follow --tail=100 --filter "warning"
+# Alternative: View all containers with status and ports
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=running"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=exited"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=created"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=paused"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=dead"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=removing"
+# docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=postgres" --filter "name=jira" --filter "status=stopped"
+
+
+
