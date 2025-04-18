@@ -34,13 +34,13 @@ services:
       - JVM_MINIMUM_MEMORY=1024m
       - JVM_MAXIMUM_MEMORY=2048m
       - JVM_SUPPORT_RECOMMENDED_ARGS=-Djava.awt.headless=true
-      - ATL_TOMCAT_PORT=8081  # Internal container port
+      - ATL_TOMCAT_PORT=8082  # Internal container port
     volumes:
       - jira_data:/var/atlassian/application-data/jira
       - jira_plugins:/opt/atlassian/jira/atlassian-jira/WEB-INF/atlassian-bundled-plugins
       - jira_logs:/opt/atlassian/jira/logs
     ports:
-      - "8081:8081"  # Host:Container port mapping
+      - "8082:8082"  # Host:Container port mapping
     networks:
       - jira-network
     restart: unless-stopped
