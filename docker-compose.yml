@@ -89,3 +89,10 @@ volumes:
 networks:
   my-ci-network:
     driver: bridge
+
+# Jenkins:       http://localhost:8080
+# SonarQube:     http://localhost:9000  
+# Nexus:         http://localhost:8081
+# pgAdmin:       http://localhost:5050  (admin@example.com/admin)
+# PostgreSQL DB: jdbc:postgresql://sonar-db:5432/sonar (internal)
+# Jira:          http://localhost:8082 (if added)

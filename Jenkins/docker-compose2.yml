@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    container_name: jira-postgres
+    environment:
+      POSTGRES_DB: jiradb
+      POSTGRES_USER: jirauser
+      POSTGRES_PASSWORD: jira_password
+      POSTGRES_HOST_AUTH_METHOD: md5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jira-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jirauser -d jiradb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  jira:
+    image: atlassian/jira-software:9.4.0
+    container_name: jira-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - JIRA_HOME=/var/atlassian/application-data/jira
+      - JIRA_DATABASE_URL=jdbc:postgresql://postgres:5432/jiradb
+      - JIRA_DB_USER=jirauser
+      - JIRA_DB_PASSWORD=jira_password
+      - JVM_MINIMUM_MEMORY=1024m
+      - JVM_MAXIMUM_MEMORY=2048m
+      - JVM_SUPPORT_RECOMMENDED_ARGS=-Djava.awt.headless=true
+      - ATL_TOMCAT_PORT=8081  # Internal container port
+    volumes:
+      - jira_data:/var/atlassian/application-data/jira
+      - jira_plugins:/opt/atlassian/jira/atlassian-jira/WEB-INF/atlassian-bundled-plugins
+      - jira_logs:/opt/atlassian/jira/logs
+    ports:
+      - "8081:8081"  # Host:Container port mapping
+    networks:
+      - jira-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  jira_data:
+  jira_plugins:
+  jira_logs:
+
+networks:
+  jira-network:
+    driver: bridge
+
+# Note: The following URLs are examples and should be replaced with actual values based on your setup.
+#http://localhost:8081 #Jira URL
+#http://localhost:8081/login.jsp #Jira login page
+#http://localhost:8081/secure/admin/ConfigureApplication!default.jspa #Jira admin page
+#http://localhost:8081/secure/admin/ConfigureUserServer!default.jspa #Jira user management page
+#http://localhost:8081/secure/admin/ConfigureGroupServer!default.jspa #Jira group management page
+#postgres://jirauser:jira_password@localhost:5432/jiradb #PostgreSQL connection string
+#http://localhost:8081/secure/admin/ConfigureUserServer!default.jspa #Jira user management page 
+#http://localhost:8081/secure/admin/ConfigureGroupServer!default.jspa #Jira group management page
+#http://localhost:8081/secure/admin/ConfigureApplication!default.jspa #Jira admin page
