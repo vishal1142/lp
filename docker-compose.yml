@@ -104,3 +104,38 @@ networks:
 
 # Alternative: View all containers with their status and ports
 # docker ps -a
+### ✅ Jenkins ###
+#docker exec -it my-jenkins-server /bin/bash
+#docker logs -f my-jenkins-server
+#docker restart my-jenkins-server
+
+### ✅ SonarQube ###
+#docker exec -it my-sonarqube /bin/bash
+#docker logs -f my-sonarqube
+#docker restart my-sonarqube
+
+### ✅ PostgreSQL for Sonar ###
+#docker exec -it sonar-postgres psql -U sonar -d sonar
+#docker logs -f sonar-postgres
+#docker restart sonar-postgres
+
+### ✅ Nexus Repository ###
+#docker exec -it my-nexus /bin/bash
+#docker logs -f my-nexus
+#docker restart my-nexus
+
+### ✅ pgAdmin ###
+#docker exec -it pgadmin /bin/sh
+#docker logs -f pgadmin
+#docker restart pgadmin
+
+### 🧪 Jira PostgreSQL (Optional) ###
+#docker exec -it jira-postgres psql -U postgres
+#docker logs -f jira-postgres
+#docker restart jira-postgres
+
+### 🔁 Full System Control ###
+#docker-compose up -d         # Start all containers
+#docker-compose down -v       # Stop and remove all containers + volumes
+#docker-compose ps            # Show container status
+#docker ps -a                 # Show all running & exited containers
