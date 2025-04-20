@@ -96,3 +96,11 @@ networks:
 # pgAdmin:       http://localhost:5050  (admin@example.com/admin)
 # PostgreSQL DB: jdbc:postgresql://sonar-db:5432/sonar (internal)
 # Jira:          http://localhost:8082 (if added)
+
+# Create and start all containers in detached mode
+# docker-compose up -d
+# Check status of all containers
+# docker-compose ps
+
+# Alternative: View all containers with their status and ports
+# docker ps -a
