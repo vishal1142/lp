@@ -1,4 +1,4 @@
-Option 1: Shell Script Using Jenkins CLI (Recommended)
+# Option 1: Shell Script Using Jenkins CLI (Recommended)
 
 #!/bin/bash
 
@@ -30,3 +30,9 @@ done
 
 # Restart Jenkins to apply changes
 java -jar $CLI_JAR -s $JENKINS_URL -auth admin:$ADMIN_PASSWORD safe-restart
+
+
+# 2 OPTION 
+docker exec <your-container-name> jenkins-plugin-cli --plugins workflow-aggregator git blueocean
+
+# git branch: 'main', url: 'https://github.com/vishal1142/lp.git '
