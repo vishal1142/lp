@@ -139,3 +139,32 @@ networks:
 #docker-compose down -v       # Stop and remove all containers + volumes
 #docker-compose ps            # Show container status
 #docker ps -a                 # Show all running & exited containers
+
+# Create the script inside the container
+# docker exec -it 72a9d8671613 bash
+# cd /var/jenkins_home
+# vi delete_failed_builds.sh
+# or nano delete_failed_builds.sh
+# or quick way 
+# cat << 'EOF' > /var/jenkins_home/delete_failed_builds.sh
+#!/bin/bash
+
+#JENKINS_URL="http://localhost:8080"
+#JOB_NAME="mrdevops_java_app"
+#USERNAME="your-jenkins-user"
+#API_TOKEN="your-api-token"
+#CRUMB=$(curl -s -u "$USERNAME:$API_TOKEN" "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)")
+
+#builds=$(curl -s -u "$USERNAME:$API_TOKEN" "$JENKINS_URL/job/$JOB_NAME/api/json?tree=builds[number,result]" | jq '.builds[] | select(.result=="FAILURE") | .number')
+
+#for build_number in $builds; do
+#  echo "Deleting failed build #$build_number"
+#  curl -X POST -u "$USERNAME:$API_TOKEN" -H "$CRUMB" "$JENKINS_URL/job/$JOB_NAME/$build_number/doDelete"
+#done
+#EOF
+
+
+# chmod +x /var/jenkins_home/delete_failed_builds.sh
+
+
+

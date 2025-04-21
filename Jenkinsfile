@@ -3,9 +3,14 @@ pipeline {
 
     stages {
         stage('Git Checkout') {
+
             steps {
+
                 script {
-                    git branch: 'main', url: 'https://github.com/vishal1142/lp.git'
+                    // Checkout the code from the specified branch of the Git repository
+                    gitCheckout(
+                        branch: "main",
+                        url: "https://github.com/vishal1142/lp.git"
                 }
             }
         }
