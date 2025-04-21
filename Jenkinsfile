@@ -1,15 +1,15 @@
-pipeline { 
-    agent any   
+pipeline {
+    agent any
 
     stages {
         stage('Git Checkout') {
             steps {
                 script {
-                    // Checkout the code from the specified branch of the Git repository
+                    // Custom shared library call to checkout Git repo
                     gitCheckout(
-                        branch: "main",
-                        url: "https://github.com/vishal1142/lp.git"
-                    ) // <-- Add this closing parenthesis here
+                        branch: 'main',
+                        url: 'https://github.com/vishal1142/lp.git'
+                    )
                 }
             }
         }
